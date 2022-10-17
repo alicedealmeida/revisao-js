@@ -9,6 +9,19 @@ botaoBuscar.addEventListener("click", function() {
     //escutando o evento de load:
     xhr.addEventListener("load", function(){
         console.log(xhr.responseText);
+        /* Se você observar o que é impresso no console, 
+        você vai ver que o servidor nos retorna um JSON, 
+        um formato de texto muito comum hoje em dia na web.
+        Como não queremos trabalhar com texto e sim com objetos Javascript, 
+        vamos parsear este texto para um objeto Javascript equivalente. 
+        Use a função JSON.parse() na resposta para transformar:*/
+
+        var resposta = xhr.responseText;
+        var pacientes = JSON.parse(resposta); // array de pacientes
+
+        pacientes.forEach(function(paciente) {
+            adicionaPaciente(paciente);
+        });
     });
 
     //envio da requisição
